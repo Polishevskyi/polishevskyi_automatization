@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="tests.ReqresApiTests" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-08-03T04:32:51" hostname=" serhiiP-MacBookPro-005890" time="1.997">
+<testsuite name="tests.ReqresApiTests" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-08-03T04:41:15" hostname=" serhiiP-MacBookPro-005890" time="2.001">
   <properties/>
-  <testcase name="getListUsersTest" classname="tests.ReqresApiTests" time="0.895"/>
-  <testcase name="getSingleUserNotFoundTest" classname="tests.ReqresApiTests" time="0.131"/>
-  <testcase name="getSingleUserTest" classname="tests.ReqresApiTests" time="0.098"/>
-  <testcase name="postCreateUserTest" classname="tests.ReqresApiTests" time="0.279"/>
-  <testcase name="postLoginSuccessfulTest" classname="tests.ReqresApiTests" time="0.245"/>
-  <testcase name="putUpdateTest" classname="tests.ReqresApiTests" time="0.32"/>
+  <testcase name="getListUsersTest" classname="tests.ReqresApiTests" time="0.904"/>
+  <testcase name="getSingleUserNotFoundTest" classname="tests.ReqresApiTests" time="0.257"/>
+  <testcase name="getSingleUserTest" classname="tests.ReqresApiTests" time="0.086"/>
+  <testcase name="postCreateUserTest" classname="tests.ReqresApiTests" time="0.299"/>
+  <testcase name="postLoginSuccessfulTest" classname="tests.ReqresApiTests" time="0.225"/>
+  <testcase name="putUpdateTest" classname="tests.ReqresApiTests" time="0.197"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

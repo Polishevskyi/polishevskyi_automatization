@@ -12,10 +12,8 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 
 public class ForStudyAuthApiTests extends BaseApiSpecifications {
 
-    private final String BASE_URL = "https://qauto.forstudy.space/api/auth";
+    private final String BASE_URL = "https://qauto.forstudy.space/api/auth/";
 
-    String name = DataGenerator.getFirstName();
-    String lastName = DataGenerator.getLastName();
     String email = DataGenerator.getEmail();
     String password = DataGenerator.getPassword();
 
@@ -23,9 +21,9 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
     public void getAuthLogoutTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(200));
         given()
-                .get("/logOut")
+                .get("logOut")
                 .then()
-                .body(matchesJsonSchemaInClasspath("forstudy_schemes/get-auth-logout-schema.json"));
+                .body(matchesJsonSchemaInClasspath("for_study_auth_schemes/get-auth-logout-schema.json"));
     }
 
     @Test(priority = 2)
@@ -33,8 +31,8 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(201));
 
         Map<String, String> requestBody = new HashMap<>();
-        requestBody.put("name", name);
-        requestBody.put("lastName", lastName);
+        requestBody.put("name", DataGenerator.getFirstName());
+        requestBody.put("lastName", DataGenerator.getLastName());
         requestBody.put("email", email);
         requestBody.put("password", password);
         requestBody.put("repeatPassword", password);
@@ -42,9 +40,9 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
         given()
                 .body(requestBody)
                 .when()
-                .post("/signUp")
+                .post("signUp")
                 .then()
-                .body(matchesJsonSchemaInClasspath("forstudy_schemes/post-auth-signup-success-schema.json"));
+                .body(matchesJsonSchemaInClasspath("for_study_auth_schemes/post-auth-signup-success-schema.json"));
     }
 
     @Test(priority = 3)
@@ -61,9 +59,9 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
         given()
                 .body(requestBody)
                 .when()
-                .post("/signUp")
+                .post("signUp")
                 .then()
-                .body(matchesJsonSchemaInClasspath("forstudy_schemes/post-auth-signup-fail-schema.json"));
+                .body(matchesJsonSchemaInClasspath("for_study_auth_schemes/post-auth-signup-fail-schema.json"));
     }
 
     @Test(priority = 4)
@@ -78,9 +76,9 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
         given()
                 .body(requestBody)
                 .when()
-                .post("/signIn")
+                .post("signIn")
                 .then()
-                .body(matchesJsonSchemaInClasspath("forstudy_schemes/post-auth-signin-success-schema.json"));
+                .body(matchesJsonSchemaInClasspath("for_study_auth_schemes/post-auth-signin-success-schema.json"));
     }
 
     @Test(priority = 5)
@@ -95,9 +93,9 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
         given()
                 .body(requestBody)
                 .when()
-                .post("/signIn")
+                .post("signIn")
                 .then()
-                .body(matchesJsonSchemaInClasspath("forstudy_schemes/post-auth-signin-fail-schema.json"));
+                .body(matchesJsonSchemaInClasspath("for_study_auth_schemes/post-auth-signin-fail-schema.json"));
     }
 
     @Test(priority = 6)
@@ -110,9 +108,9 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
         given()
                 .body(requestBody)
                 .when()
-                .post("/resetPassword")
+                .post("resetPassword")
                 .then()
-                .body(matchesJsonSchemaInClasspath("forstudy_schemes/post-auth-reset-password-success-schema.json"));
+                .body(matchesJsonSchemaInClasspath("for_study_auth_schemes/post-auth-reset-password-success-schema.json"));
     }
 
     @Test(priority = 7)
@@ -125,10 +123,8 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
         given()
                 .body(requestBody)
                 .when()
-                .post("/resetPassword")
+                .post("resetPassword")
                 .then()
-                .body(matchesJsonSchemaInClasspath("forstudy_schemes/post-auth-reset-password-fail-schema.json"));
+                .body(matchesJsonSchemaInClasspath("for_study_auth_schemes/post-auth-reset-password-fail-schema.json"));
     }
-
-
 }

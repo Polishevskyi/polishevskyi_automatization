@@ -85,6 +85,4 @@ public class ReqresApiTests extends BaseApiSpecifications {
                 .then()
                 .body(matchesJsonSchemaInClasspath("post-login-successful-schema.json"));
     }
-
-    //test
 }

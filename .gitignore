@@ -1,7 +1,7 @@
 # Compiled class file
 *.class
 .idea
-.gradle
+.gradle/
 build
 allure-results/
 # Log file

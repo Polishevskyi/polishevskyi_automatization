@@ -10,9 +10,9 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
-public class ForStudyApiTests extends BaseApiSpecifications {
+public class ForStudyAuthApiTests extends BaseApiSpecifications {
 
-    private final String BASE_URL = "https://qauto.forstudy.space/api/";
+    private final String BASE_URL = "https://qauto.forstudy.space/api/auth";
 
     String name = DataGenerator.getFirstName();
     String lastName = DataGenerator.getLastName();
@@ -23,7 +23,7 @@ public class ForStudyApiTests extends BaseApiSpecifications {
     public void getAuthLogoutTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(200));
         given()
-                .get("/auth/logOut")
+                .get("/logOut")
                 .then()
                 .body(matchesJsonSchemaInClasspath("forstudy_schemes/get-auth-logout-schema.json"));
     }
@@ -42,7 +42,7 @@ public class ForStudyApiTests extends BaseApiSpecifications {
         given()
                 .body(requestBody)
                 .when()
-                .post("/auth/signUp")
+                .post("/signUp")
                 .then()
                 .body(matchesJsonSchemaInClasspath("forstudy_schemes/post-auth-signup-success-schema.json"));
     }
@@ -61,7 +61,7 @@ public class ForStudyApiTests extends BaseApiSpecifications {
         given()
                 .body(requestBody)
                 .when()
-                .post("/auth/signUp")
+                .post("/signUp")
                 .then()
                 .body(matchesJsonSchemaInClasspath("forstudy_schemes/post-auth-signup-fail-schema.json"));
     }
@@ -78,7 +78,7 @@ public class ForStudyApiTests extends BaseApiSpecifications {
         given()
                 .body(requestBody)
                 .when()
-                .post("/auth/signIn")
+                .post("/signIn")
                 .then()
                 .body(matchesJsonSchemaInClasspath("forstudy_schemes/post-auth-signin-success-schema.json"));
     }
@@ -95,7 +95,7 @@ public class ForStudyApiTests extends BaseApiSpecifications {
         given()
                 .body(requestBody)
                 .when()
-                .post("/auth/signIn")
+                .post("/signIn")
                 .then()
                 .body(matchesJsonSchemaInClasspath("forstudy_schemes/post-auth-signin-fail-schema.json"));
     }
@@ -110,7 +110,7 @@ public class ForStudyApiTests extends BaseApiSpecifications {
         given()
                 .body(requestBody)
                 .when()
-                .post("/auth/resetPassword")
+                .post("/resetPassword")
                 .then()
                 .body(matchesJsonSchemaInClasspath("forstudy_schemes/post-auth-reset-password-success-schema.json"));
     }
@@ -125,7 +125,7 @@ public class ForStudyApiTests extends BaseApiSpecifications {
         given()
                 .body(requestBody)
                 .when()
-                .post("/auth/resetPassword")
+                .post("/resetPassword")
                 .then()
                 .body(matchesJsonSchemaInClasspath("forstudy_schemes/post-auth-reset-password-fail-schema.json"));
     }

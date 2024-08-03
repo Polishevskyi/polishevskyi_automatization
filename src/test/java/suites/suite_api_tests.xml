@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="reqres_api_tests" verbose="10" parallel="methods" thread-count="4">
+<suite name="suite_api_tests">
     <test name="ReqresApiTests">
         <classes>
             <class name="tests.ReqresApiTests"/>
+        </classes>
+    </test>
+    <test name="ForStudyAuthApiTests">
+        <classes>
+            <class name="tests.ForStudyAuthApiTests"/>
         </classes>
     </test>
 </suite>

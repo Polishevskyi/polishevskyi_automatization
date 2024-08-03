@@ -4,7 +4,6 @@
 .gradle/
 build
 allure-results/
-GradleReport/
 # Log file
 *.log
 

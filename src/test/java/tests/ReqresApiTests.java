@@ -13,7 +13,7 @@ public class ReqresApiTests extends BaseApiSpecifications {
 
     private static final String BASE_URL = "https://reqres.in/";
 
-    @Test
+    @Test(priority = 1)
     public void getListUsersTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(200));
         given()
@@ -22,7 +22,7 @@ public class ReqresApiTests extends BaseApiSpecifications {
                 .body(matchesJsonSchemaInClasspath("get-list-users-schema.json"));
     }
 
-    @Test
+    @Test(priority = 2)
     public void getSingleUserTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(200));
         given()
@@ -31,14 +31,14 @@ public class ReqresApiTests extends BaseApiSpecifications {
                 .body(matchesJsonSchemaInClasspath("get-single-user-schema.json"));
     }
 
-    @Test
+    @Test(priority = 3)
     public void getSingleUserNotFoundTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(404));
         given()
                 .get("/api/users/23");
     }
 
-    @Test
+    @Test(priority = 4)
     public void getListResourceTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(200));
         given()
@@ -47,7 +47,7 @@ public class ReqresApiTests extends BaseApiSpecifications {
                 .body(matchesJsonSchemaInClasspath("get-list-resource-schema.json"));
     }
 
-    @Test
+    @Test(priority = 5)
     public void getSingleResourceTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(200));
         given()
@@ -56,15 +56,15 @@ public class ReqresApiTests extends BaseApiSpecifications {
                 .body(matchesJsonSchemaInClasspath("get-single-resource-schema.json"));
     }
 
-    @Test
+    @Test(priority = 6)
     public void getSingleResourceNotFoundTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(404));
         given()
                 .get("/api/unknown/23");
     }
 
-    @Test
-    public void postCreateUserTest() {
+    @Test(priority = 7)
+    public void postCreateTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(201));
 
         Map<String, String> requestBody = new HashMap<>();
@@ -79,7 +79,7 @@ public class ReqresApiTests extends BaseApiSpecifications {
                 .body(matchesJsonSchemaInClasspath("post-create-user-schema.json"));
     }
 
-    @Test
+    @Test(priority = 8)
     public void putUpdateTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(200));
 
@@ -95,7 +95,7 @@ public class ReqresApiTests extends BaseApiSpecifications {
                 .body(matchesJsonSchemaInClasspath("put-update-schema.json"));
     }
 
-    @Test
+    @Test(priority = 9)
     public void patchUpdateTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(200));
 
@@ -111,14 +111,14 @@ public class ReqresApiTests extends BaseApiSpecifications {
                 .body(matchesJsonSchemaInClasspath("put-update-schema.json"));
     }
 
-    @Test
+    @Test(priority = 10)
     public void deleteDeleteTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(204));
         given()
                 .delete("/api/users/2");
     }
 
-    @Test
+    @Test(priority = 11)
     public void postRegisterSuccessfulTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(200));
 
@@ -134,7 +134,7 @@ public class ReqresApiTests extends BaseApiSpecifications {
                 .body(matchesJsonSchemaInClasspath("post-register-successful-schema.json"));
     }
 
-    @Test
+    @Test(priority = 12)
     public void postRegisterUnsuccessfulTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(400));
 
@@ -149,7 +149,7 @@ public class ReqresApiTests extends BaseApiSpecifications {
                 .body(matchesJsonSchemaInClasspath("post-register-unsuccessful-schema.json"));
     }
 
-    @Test
+    @Test(priority = 13)
     public void postLoginSuccessfulTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(200));
 
@@ -165,7 +165,7 @@ public class ReqresApiTests extends BaseApiSpecifications {
                 .body(matchesJsonSchemaInClasspath("post-login-successful-schema.json"));
     }
 
-    @Test
+    @Test(priority = 14)
     public void postLoginUnsuccessfulTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(400));
 
@@ -180,7 +180,7 @@ public class ReqresApiTests extends BaseApiSpecifications {
                 .body(matchesJsonSchemaInClasspath("post-login-unsuccessful-schema.json"));
     }
 
-    @Test
+    @Test(priority = 15)
     public void getDelayedResponseTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(200));
         given()

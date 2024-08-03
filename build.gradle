@@ -10,12 +10,21 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    testngVersion = '7.10.2'
+    restAssuredVersion = '5.5.0'
+    allureTestngVersion = '2.19.0'
+    jsonSchemaValidatorVersion = '5.5.0'
+    javafakerVersion = '1.0.2'
+}
+
 dependencies {
-    testImplementation 'org.testng:testng:7.10.2'
-    testImplementation 'io.rest-assured:rest-assured:5.5.0'
-    implementation 'io.rest-assured:json-schema-validator:5.5.0'
-    implementation 'com.github.javafaker:javafaker:1.0.2'
-    testImplementation 'io.qameta.allure:allure-testng:2.19.0'
+    testImplementation "org.testng:testng:$testngVersion"
+    testImplementation "io.rest-assured:rest-assured:$restAssuredVersion"
+    testImplementation "io.qameta.allure:allure-testng:$allureTestngVersion"
+
+    implementation "io.rest-assured:json-schema-validator:$jsonSchemaValidatorVersion"
+    implementation "com.github.javafaker:javafaker:$javafakerVersion"
 }
 
 test {
@@ -24,10 +33,11 @@ test {
 
 allure {
     autoconfigure = true
-    version = '2.19.0'
+    version = allureTestngVersion
 }
 
 /*
+Commands to run tests and generate Allure reports:
 ./gradlew test
 ./gradlew allureReport
 ./gradlew allureServe

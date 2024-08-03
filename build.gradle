@@ -16,6 +16,7 @@ dependencies {
     implementation 'io.qameta.allure:allure-testng:2.28.1'
     implementation 'io.qameta.allure:allure-rest-assured:2.28.1'
     implementation 'io.rest-assured:json-schema-validator:5.5.0'
+    implementation 'com.github.javafaker:javafaker:1.0.2'
 }
 
 test {

@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class ReqresApiTests extends BaseApiSpecifications {
 
-    private static final String BASE_URL = "https://reqres.in/";
+    private final String BASE_URL = "https://reqres.in/";
 
     @Test(priority = 1)
     public void getListUsersTest() {
@@ -19,7 +19,7 @@ public class ReqresApiTests extends BaseApiSpecifications {
         given()
                 .get("/api/users?page=2")
                 .then()
-                .body(matchesJsonSchemaInClasspath("get-list-users-schema.json"));
+                .body(matchesJsonSchemaInClasspath("reqres_schemes/get-list-users-schema.json"));
     }
 
     @Test(priority = 2)
@@ -28,7 +28,7 @@ public class ReqresApiTests extends BaseApiSpecifications {
         given()
                 .get("/api/users/2")
                 .then()
-                .body(matchesJsonSchemaInClasspath("get-single-user-schema.json"));
+                .body(matchesJsonSchemaInClasspath("reqres_schemes/get-single-user-schema.json"));
     }
 
     @Test(priority = 3)
@@ -44,7 +44,7 @@ public class ReqresApiTests extends BaseApiSpecifications {
         given()
                 .get("/api/unknown")
                 .then()
-                .body(matchesJsonSchemaInClasspath("get-list-resource-schema.json"));
+                .body(matchesJsonSchemaInClasspath("reqres_schemes/get-list-resource-schema.json"));
     }
 
     @Test(priority = 5)
@@ -53,7 +53,7 @@ public class ReqresApiTests extends BaseApiSpecifications {
         given()
                 .get("/api/unknown/2")
                 .then()
-                .body(matchesJsonSchemaInClasspath("get-single-resource-schema.json"));
+                .body(matchesJsonSchemaInClasspath("reqres_schemes/get-single-resource-schema.json"));
     }
 
     @Test(priority = 6)
@@ -76,7 +76,7 @@ public class ReqresApiTests extends BaseApiSpecifications {
                 .when()
                 .post("/api/users")
                 .then()
-                .body(matchesJsonSchemaInClasspath("post-create-user-schema.json"));
+                .body(matchesJsonSchemaInClasspath("reqres_schemes/post-create-user-schema.json"));
     }
 
     @Test(priority = 8)
@@ -92,7 +92,7 @@ public class ReqresApiTests extends BaseApiSpecifications {
                 .when()
                 .put("/api/users/2")
                 .then()
-                .body(matchesJsonSchemaInClasspath("put-update-schema.json"));
+                .body(matchesJsonSchemaInClasspath("reqres_schemes/put-update-schema.json"));
     }
 
     @Test(priority = 9)
@@ -108,7 +108,7 @@ public class ReqresApiTests extends BaseApiSpecifications {
                 .when()
                 .patch("/api/users/2")
                 .then()
-                .body(matchesJsonSchemaInClasspath("put-update-schema.json"));
+                .body(matchesJsonSchemaInClasspath("reqres_schemes/put-update-schema.json"));
     }
 
     @Test(priority = 10)
@@ -131,7 +131,7 @@ public class ReqresApiTests extends BaseApiSpecifications {
                 .when()
                 .post("/api/register")
                 .then()
-                .body(matchesJsonSchemaInClasspath("post-register-successful-schema.json"));
+                .body(matchesJsonSchemaInClasspath("reqres_schemes/post-register-successful-schema.json"));
     }
 
     @Test(priority = 12)
@@ -146,7 +146,7 @@ public class ReqresApiTests extends BaseApiSpecifications {
                 .when()
                 .post("/api/register")
                 .then()
-                .body(matchesJsonSchemaInClasspath("post-register-unsuccessful-schema.json"));
+                .body(matchesJsonSchemaInClasspath("reqres_schemes/post-register-unsuccessful-schema.json"));
     }
 
     @Test(priority = 13)
@@ -162,7 +162,7 @@ public class ReqresApiTests extends BaseApiSpecifications {
                 .when()
                 .post("/api/login")
                 .then()
-                .body(matchesJsonSchemaInClasspath("post-login-successful-schema.json"));
+                .body(matchesJsonSchemaInClasspath("reqres_schemes/post-login-successful-schema.json"));
     }
 
     @Test(priority = 14)
@@ -177,7 +177,7 @@ public class ReqresApiTests extends BaseApiSpecifications {
                 .when()
                 .post("/api/login")
                 .then()
-                .body(matchesJsonSchemaInClasspath("post-login-unsuccessful-schema.json"));
+                .body(matchesJsonSchemaInClasspath("reqres_schemes/post-login-unsuccessful-schema.json"));
     }
 
     @Test(priority = 15)
@@ -186,6 +186,6 @@ public class ReqresApiTests extends BaseApiSpecifications {
         given()
                 .get("/api/users?delay=3")
                 .then()
-                .body(matchesJsonSchemaInClasspath("get-delayed-response-schema.json"));
+                .body(matchesJsonSchemaInClasspath("reqres_schemes/get-delayed-response-schema.json"));
     }
 }

@@ -1,13 +1,13 @@
-package tests.Ui;
+package web.citrus;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
-import lib.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.сitrusPages.MainPage;
+import web.BaseUiTest;
 
-public class CitrusTests extends BaseTest {
+public class CitrusTests extends BaseUiTest {
 
     private final static String BASE_URL = "https://www.ctrs.com.ua/";
     private final static String IPHONE_TITLE = "iPhone";

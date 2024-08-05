@@ -1,9 +1,9 @@
-package tests.Api;
+package api.forstudy;
 
+import api.BaseApiSpecifications;
 import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
-import lib.BaseApiSpecifications;
-import lib.DataGenerator;
+import utils.DataGenerator;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
@@ -12,7 +12,7 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
-public class ForStudyAuthApiTests extends BaseApiSpecifications {
+public class ForStudyApiTests extends BaseApiSpecifications {
 
     private final String BASE_URL = "https://qauto.forstudy.space/api/auth/";
 
@@ -27,7 +27,7 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
         given()
                 .get("logOut")
                 .then()
-                .body(matchesJsonSchemaInClasspath("for_study_auth_schemes/get-auth-logout-schema.json"));
+                .body(matchesJsonSchemaInClasspath("forstudy_schemes/get-auth-logout-schema.json"));
     }
 
     @Test(priority = 2)
@@ -48,7 +48,7 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
                 .when()
                 .post("signUp")
                 .then()
-                .body(matchesJsonSchemaInClasspath("for_study_auth_schemes/post-auth-signup-success-schema.json"));
+                .body(matchesJsonSchemaInClasspath("forstudy_schemes/post-auth-signup-success-schema.json"));
     }
 
     @Test(priority = 3)
@@ -69,7 +69,7 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
                 .when()
                 .post("signUp")
                 .then()
-                .body(matchesJsonSchemaInClasspath("for_study_auth_schemes/post-auth-signup-fail-schema.json"));
+                .body(matchesJsonSchemaInClasspath("forstudy_schemes/post-auth-signup-fail-schema.json"));
     }
 
     @Test(priority = 4)
@@ -88,7 +88,7 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
                 .when()
                 .post("signIn")
                 .then()
-                .body(matchesJsonSchemaInClasspath("for_study_auth_schemes/post-auth-signin-success-schema.json"));
+                .body(matchesJsonSchemaInClasspath("forstudy_schemes/post-auth-signin-success-schema.json"));
     }
 
     @Test(priority = 5)
@@ -107,7 +107,7 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
                 .when()
                 .post("signIn")
                 .then()
-                .body(matchesJsonSchemaInClasspath("for_study_auth_schemes/post-auth-signin-fail-schema.json"));
+                .body(matchesJsonSchemaInClasspath("forstudy_schemes/post-auth-signin-fail-schema.json"));
     }
 
     @Test(priority = 6)
@@ -124,7 +124,7 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
                 .when()
                 .post("resetPassword")
                 .then()
-                .body(matchesJsonSchemaInClasspath("for_study_auth_schemes/post-auth-reset-password-success-schema.json"));
+                .body(matchesJsonSchemaInClasspath("forstudy_schemes/post-auth-reset-password-success-schema.json"));
     }
 
     @Test(priority = 7)
@@ -141,6 +141,6 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
                 .when()
                 .post("resetPassword")
                 .then()
-                .body(matchesJsonSchemaInClasspath("for_study_auth_schemes/post-auth-reset-password-fail-schema.json"));
+                .body(matchesJsonSchemaInClasspath("forstudy_schemes/post-auth-reset-password-fail-schema.json"));
     }
 }

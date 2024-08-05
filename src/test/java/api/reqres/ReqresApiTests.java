@@ -1,11 +1,11 @@
-package tests.Api;
+package api.reqres;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
+import api.BaseApiSpecifications;
 import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
-import lib.BaseApiSpecifications;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;

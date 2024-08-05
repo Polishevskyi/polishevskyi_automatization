@@ -1,13 +1,13 @@
-package tests.Ui;
+package web.ain;
 
 import pages.ainPages.MainPage;
 import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
-import lib.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import web.BaseUiTest;
 
-public class AinTests extends BaseTest {
+public class AinTests extends BaseUiTest {
 
     private final static String BASE_URL = "https://ain.ua/";
     private final static String SEARCH_TEXT = "iPhone 14 не матиме слоту для SIM-карти в США";

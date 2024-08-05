@@ -1,4 +1,4 @@
-package lib;
+package web;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
@@ -6,7 +6,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
-abstract public class BaseTest {
+abstract public class BaseUiTest {
 
     public void setUp() {
         WebDriverManager.chromedriver().setup();

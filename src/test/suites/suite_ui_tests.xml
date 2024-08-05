@@ -3,12 +3,12 @@
 <suite name="suite_ui_tests" parallel="methods" thread-count="6">
     <test name="AinTests">
         <classes>
-            <class name="tests.Ui.AinTests"/>
+            <class name="web.ain.AinTests"/>
         </classes>
     </test>
     <test name="CitrusTests">
         <classes>
-            <class name="tests.Ui.CitrusTests"/>
+            <class name="web.citrus.CitrusTests"/>
         </classes>
     </test>
 </suite>

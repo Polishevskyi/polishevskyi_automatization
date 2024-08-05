@@ -1,5 +1,7 @@
 package tests.Api;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Owner;
 import lib.BaseApiSpecifications;
 import lib.DataGenerator;
 import org.testng.annotations.Test;
@@ -18,6 +20,8 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
     String password = DataGenerator.getPassword();
 
     @Test(priority = 1)
+    @Owner("Polishevskyi")
+    @Description("Test for successful logout from the application")
     public void getAuthLogoutTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(200));
         given()
@@ -27,6 +31,8 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
     }
 
     @Test(priority = 2)
+    @Owner("Polishevskyi")
+    @Description("Test for successful sign-up to the application")
     public void postAuthSignUpSuccessTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(201));
 
@@ -46,6 +52,8 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
     }
 
     @Test(priority = 3)
+    @Owner("Polishevskyi")
+    @Description("Test for failed sign-up with already registered email")
     public void postAuthSignUpFailTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(400));
 
@@ -65,6 +73,8 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
     }
 
     @Test(priority = 4)
+    @Owner("Polishevskyi")
+    @Description("Test for successful sign-in to the application")
     public void postAuthSignInSuccessTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(200));
 
@@ -82,6 +92,8 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
     }
 
     @Test(priority = 5)
+    @Owner("Polishevskyi")
+    @Description("Test for failed sign-in with incorrect credentials")
     public void postAuthSignInFailTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(400));
 
@@ -99,6 +111,8 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
     }
 
     @Test(priority = 6)
+    @Owner("Polishevskyi")
+    @Description("Test for successful password reset request")
     public void postAuthResetPasswordSuccessTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(200));
 
@@ -114,6 +128,8 @@ public class ForStudyAuthApiTests extends BaseApiSpecifications {
     }
 
     @Test(priority = 7)
+    @Owner("Polishevskyi")
+    @Description("Test for failed password reset request with invalid email")
     public void postAuthResetPasswordFailTest() {
         configureSpec(requestSpecification(BASE_URL), responseSpecification(400));
 

@@ -16,20 +16,19 @@ ext {
     allureTestngVersion = '2.19.0'
     jsonSchemaValidatorVersion = '5.5.0'
     javafakerVersion = '1.0.2'
+    selenideVersion = '7.4.1'
+    webdrivermanagerVersion = '5.9.2'
 }
 
 dependencies {
     testImplementation "org.testng:testng:$testngVersion"
     testImplementation "io.rest-assured:rest-assured:$restAssuredVersion"
     testImplementation "io.qameta.allure:allure-testng:$allureTestngVersion"
-    implementation 'io.qameta.allure:allure-selenide:2.28.1'
-    implementation 'io.qameta.allure:allure-rest-assured:2.28.1'
 
     implementation "io.rest-assured:json-schema-validator:$jsonSchemaValidatorVersion"
     implementation "com.github.javafaker:javafaker:$javafakerVersion"
-
-    implementation 'com.codeborne:selenide:7.4.1'
-    implementation 'io.github.bonigarcia:webdrivermanager:5.9.2'
+    implementation "com.codeborne:selenide:$selenideVersion"
+    implementation "io.github.bonigarcia:webdrivermanager:$webdrivermanagerVersion"
 }
 
 test {

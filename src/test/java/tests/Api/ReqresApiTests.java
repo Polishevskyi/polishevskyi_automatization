@@ -1,4 +1,4 @@
-package tests;
+package tests.Api;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;

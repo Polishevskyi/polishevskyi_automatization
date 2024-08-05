@@ -1,4 +1,4 @@
-package tests;
+package tests.Api;
 
 import lib.BaseApiSpecifications;
 import lib.DataGenerator;

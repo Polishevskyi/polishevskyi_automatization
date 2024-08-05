@@ -3,12 +3,12 @@
 <suite name="suite_api_tests">
     <test name="ReqresApiTests">
         <classes>
-            <class name="tests.ReqresApiTests"/>
+            <class name="tests.Api.ReqresApiTests"/>
         </classes>
     </test>
     <test name="ForStudyAuthApiTests">
         <classes>
-            <class name="tests.ForStudyAuthApiTests"/>
+            <class name="tests.Api.ForStudyAuthApiTests"/>
         </classes>
     </test>
 </suite>

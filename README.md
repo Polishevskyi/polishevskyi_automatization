@@ -1,4 +1,4 @@
-# Polishevskyi_Automatization FrameWork
+# Polishevskyi_Automatization Framework
 
 ## Description
 I am an experienced QA engineer focused on test automation, utilizing various modern libraries to ensure software quality. 

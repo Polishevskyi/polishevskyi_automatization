@@ -24,3 +24,7 @@ My approach includes API testing and WEB application automation, report generati
 - **Efficient Automation**: I implement efficient automation solutions that help reduce testing time and improve software quality. ⏱️
 - **Detailed Reporting**: I use modern tools to generate reports, providing detailed information about test results. 📝
 - **Test Data Generation**: I use realistic test data generation, allowing for more accurate and realistic testing scenarios. 🧑‍💻
+
+
+## Test Results Allure
+![Test Results](https://github.com/Polishevskyi/polishevskyi_automatization/blob/master/AllureReport.png)

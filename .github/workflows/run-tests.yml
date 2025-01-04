@@ -33,5 +33,12 @@ jobs:
       - name: Build project
         run: ./gradlew build -x test --no-daemon
 
-      - name: Run tests and log results
-        run: ./gradlew test --no-daemon || true
+      - name: Run tests
+        run: ./gradlew test --no-daemon
+
+      - name: Upload Gradle Test Report
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: gradle-test-report
+          path: build/reports/tests/test

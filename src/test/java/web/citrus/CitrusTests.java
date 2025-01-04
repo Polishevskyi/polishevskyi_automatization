@@ -11,7 +11,7 @@ public class CitrusTests extends BaseUiTest {
 
     private final static String BASE_URL = "https://www.ctrs.com.ua/";
     private final static String IPHONE_TITLE = "iPhone";
-    private final static String SUPPORT_TITLE = "11!";
+    private final static String SUPPORT_TITLE = "Любий Клієнте!";
     private final static String COMPARE_TITLE = "Порівняння не заповнено";
 
     @Test

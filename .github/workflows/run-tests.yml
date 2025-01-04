@@ -36,6 +36,12 @@ jobs:
       - name: Run tests
         run: ./gradlew test --no-daemon
 
+      - name: Output test results to logs
+        run: |
+          echo "========== Test Results =========="
+          cat build/test-results/test/*.xml || echo "No test results found"
+          echo "=================================="
+
       - name: Generate Allure Report
         run: ./gradlew allureReport --no-daemon
 

@@ -21,7 +21,7 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin' # OpenJDK дистрибуція
+          distribution: 'temurin'
           java-version: '17'
 
       # Кешування залежностей Gradle
@@ -35,15 +35,15 @@ jobs:
 
       # Завантаження залежностей і компіляція
       - name: Build and resolve dependencies
-        run: ./gradlew build -x test
+        run: ./gradlew build -x test --no-daemon
 
       # Запуск тестів
       - name: Run tests
-        run: ./gradlew test
+        run: ./gradlew test --no-daemon
 
       # Генерація Allure звіту
       - name: Generate Allure Report
-        run: ./gradlew allureReport
+        run: ./gradlew allureReport --no-daemon
 
       # Завантаження Allure результатів як артефакт
       - name: Upload Allure Results

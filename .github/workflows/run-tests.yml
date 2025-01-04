@@ -33,28 +33,5 @@ jobs:
       - name: Build project
         run: ./gradlew build -x test --no-daemon
 
-      - name: Run tests (continue on failure)
+      - name: Run tests and log results
         run: ./gradlew test --no-daemon || true
-
-      - name: Publish Gradle Test Results
-        uses: dorny/test-reporter@v1
-        with:
-          name: Gradle Tests
-          path: build/test-results/test/TEST-*.xml
-          reporter: junit
-          fail-on-error: false
-
-      - name: Generate Allure Report
-        run: ./gradlew allureReport --no-daemon
-
-      - name: Upload Gradle Test Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: gradle-test-report
-          path: build/reports/tests/test
-
-      - name: Upload Allure Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: allure-report
-          path: build/reports/allure-report

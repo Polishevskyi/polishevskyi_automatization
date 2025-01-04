@@ -41,7 +41,7 @@ jobs:
         with:
           name: Gradle Tests
           path: build/test-results/test/TEST-*.xml
-          format: junit
+          reporter: junit
           fail-on-error: false
 
       - name: Generate Allure Report

@@ -24,7 +24,7 @@ public class CitrusTests extends BaseUiTest {
                 .contains(IPHONE_TITLE));
     }
 
-    @Test(enabled = false)
+    @Test
     @Owner("Polishevskyi")
     @Description("Test verify Support block")
     public void verifySupportTab() {

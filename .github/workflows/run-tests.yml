@@ -50,24 +50,3 @@ jobs:
           elif [ "${{ github.event.inputs.deployment_target }}" == "Reqres_API_Test" ]; then
             ./gradlew test --tests api.reqres.ForStudyApiTests -PallureReportDir=allure-results
           fi
-
-      - name: Generate Allure report
-        run: ./gradlew allureReport
-
-  Publish-Allure-Report:
-    runs-on: ubuntu-latest
-    needs: Testing
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Copy Allure Report to deployment folder
-        run: |
-          mkdir -p report
-          cp -r build/reports/allure-report/* report/
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./report

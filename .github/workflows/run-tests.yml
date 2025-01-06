@@ -1,4 +1,4 @@
-name: Automated tests
+name: Automated tests with Allure
 
 on:
   workflow_dispatch:
@@ -14,6 +14,9 @@ on:
           - Citrus_UI_Tests
           - Study_API_Tests
           - Reqres_API_Test
+
+permissions:
+  contents: read
 
 jobs:
   test:
@@ -37,22 +40,72 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: All_Tests
+      - name: Install Allure
+        run: sudo wget https://github.com/allure-framework/allure2/releases/download/2.23.1/allure-2.23.1.tgz && sudo tar -zxvf allure-2.23.1.tgz -C /opt/ && sudo ln -s /opt/allure-2.23.1/bin/allure /usr/bin/allure
+
+      - name: Run All_Tests
         if: "github.event.inputs.deployment_target == 'All_Tests'"
-        run: ./gradlew test
+        run: ./gradlew test -PallureReportDir=allure-results
 
-      - name: Ain_UI_Tests
+      - name: Run Ain_UI_Tests
         if: "github.event.inputs.deployment_target == 'Ain_UI_Tests'"
-        run: ./gradlew test --tests web.ain.AinTests
+        run: ./gradlew test --tests web.ain.AinTests -PallureReportDir=allure-results
 
-      - name: Citrus_UI_Tests
+      - name: Run Citrus_UI_Tests
         if: "github.event.inputs.deployment_target == 'Citrus_UI_Tests'"
-        run: ./gradlew test --tests web.ain.CitrusTests
+        run: ./gradlew test --tests web.ain.CitrusTests -PallureReportDir=allure-results
 
-      - name: Study_API_Tests
+      - name: Run Study_API_Tests
         if: "github.event.inputs.deployment_target == 'Study_API_Tests'"
-        run: ./gradlew test --tests api.forstudy.ForStudyApiTests
+        run: ./gradlew test --tests api.forstudy.ForStudyApiTests -PallureReportDir=allure-results
 
-      - name: Reqres_API_Test
+      - name: Run Reqres_API_Test
         if: "github.event.inputs.deployment_target == 'Reqres_API_Test'"
-        run: ./gradlew test --tests api.reqres.ReqresApiTests
+        run: ./gradlew test --tests api.reqres.ReqresApiTests -PallureReportDir=allure-results
+
+      - name: Store Allure Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-results
+          path: allure-results
+          retention-days: 1
+
+  generate-report:
+    runs-on: ubuntu-latest
+    needs: test
+    name: Generate Allure Report
+
+    steps:
+      - name: Download Allure Results
+        uses: actions/download-artifact@v3
+        with:
+          name: allure-results
+
+      - name: Generate Allure Report
+        run: allure generate -c allure-results -o allure-report
+
+      - name: Store Allure Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: allure-report
+          retention-days: 1
+
+  publish-report:
+    runs-on: ubuntu-latest
+    needs: generate-report
+    name: Publish Allure Report
+
+    steps:
+      - name: Download Allure Report
+        uses: actions/download-artifact@v3
+        with:
+          name: allure-report
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: allure-report
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1.2.9

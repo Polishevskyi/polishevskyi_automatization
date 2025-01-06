@@ -16,7 +16,7 @@ on:
           - Reqres_API_Test
 
 jobs:
-  test:
+  Testing:
     runs-on: ubuntu-latest
 
     steps:
@@ -36,22 +36,38 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - name: All_Tests
-        if: "github.event.inputs.deployment_target == 'All_Tests'"
-        run: ./gradlew test
 
-      - name: Ain_UI_Tests
-        if: "github.event.inputs.deployment_target == 'Ain_UI_Tests'"
-        run: ./gradlew test --tests web.ain.AinTests
+      - name: Run selected tests
+        run: |
+          if [ "${{ github.event.inputs.deployment_target }}" == "All_Tests" ]; then
+            ./gradlew test
+          elif [ "${{ github.event.inputs.deployment_target }}" == "Ain_UI_Tests" ]; then
+            ./gradlew test --tests web.ain.AinTests
+          elif [ "${{ github.event.inputs.deployment_target }}" == "Citrus_UI_Tests" ]; then
+            ./gradlew test --tests web.ain.CitrusTests
+          elif [ "${{ github.event.inputs.deployment_target }}" == "Study_API_Tests" ]; then
+            ./gradlew test --tests api.forstudy.ForStudyApiTests
+          elif [ "${{ github.event.inputs.deployment_target }}" == "Reqres_API_Test" ]; then
+            ./gradlew test --tests api.reqres.ForStudyApiTests -PallureReportDir=allure-results
+          fi
 
-      - name: Citrus_UI_Tests
-        if: "github.event.inputs.deployment_target == 'Citrus_UI_Tests'"
-        run: ./gradlew test --tests web.ain.CitrusTests
+      - name: Generate Allure report
+        run: ./gradlew allureReport
 
-      - name: Study_API_Tests
-        if: "github.event.inputs.deployment_target == 'Study_API_Tests'"
-        run: ./gradlew test --tests api.forstudy.ForStudyApiTests
+  Publish-Allure-Report:
+    runs-on: ubuntu-latest
+    needs: Testing
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Run Reqres_API_Test
-        if: "github.event.inputs.deployment_target == 'Reqres_API_Test'"
-        run: ./gradlew test --tests api.reqres.ForStudyApiTests -PallureReportDir=allure-results
+      - name: Copy Allure Report to deployment folder
+        run: |
+          mkdir -p report
+          cp -r build/reports/allure-report/* report/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./report

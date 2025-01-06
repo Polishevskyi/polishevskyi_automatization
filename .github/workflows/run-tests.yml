@@ -48,5 +48,5 @@ jobs:
           elif [ "${{ github.event.inputs.deployment_target }}" == "Study_API_Tests" ]; then
             ./gradlew test --tests api.forstudy.ForStudyApiTests
           elif [ "${{ github.event.inputs.deployment_target }}" == "Reqres_API_Test" ]; then
-            ./gradlew test --tests api.reqres.ForStudyApiTests -PallureReportDir=allure-results
+            ./gradlew test --tests api.reqres.ForStudyApiTests 
           fi

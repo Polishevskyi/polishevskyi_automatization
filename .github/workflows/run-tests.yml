@@ -32,23 +32,26 @@ jobs:
       - name: Cache Gradle dependencies
         uses: actions/cache@v3
         with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
+          path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+      - name: All_Tests
+        if: "github.event.inputs.deployment_target == 'All_Tests'"
+        run: ./gradlew test
 
-      - name: Run selected tests
-        run: |
-          if [ "${{ github.event.inputs.deployment_target }}" == "All_Tests" ]; then
-            ./gradlew test
-          elif [ "${{ github.event.inputs.deployment_target }}" == "Ain_UI_Tests" ]; then
-            ./gradlew test --tests web.ain.AinTests
-          elif [ "${{ github.event.inputs.deployment_target }}" == "Citrus_UI_Tests" ]; then
-            ./gradlew test --tests web.ain.CitrusTests
-          elif [ "${{ github.event.inputs.deployment_target }}" == "Study_API_Tests" ]; then
-            ./gradlew test --tests api.forstudy.ForStudyApiTests
-          elif [ "${{ github.event.inputs.deployment_target }}" == "Reqres_API_Test" ]; then
-            ./gradlew test --tests api.reqres.ReqresApiTests
-          fi
+      - name: Ain_UI_Tests
+        if: "github.event.inputs.deployment_target == 'Ain_UI_Tests'"
+        run: ./gradlew test --tests web.ain.AinTests
+
+      - name: Citrus_UI_Tests
+        if: "github.event.inputs.deployment_target == 'Citrus_UI_Tests'"
+        run: ./gradlew test --tests web.ain.CitrusTests
+
+      - name: Study_API_Tests
+        if: "github.event.inputs.deployment_target == 'Study_API_Tests'"
+        run: ./gradlew test --tests api.forstudy.ForStudyApiTests
+
+      - name: Reqres_API_Test
+        if: "github.event.inputs.deployment_target == 'Reqres_API_Test'"
+        run: ./gradlew test --tests api.reqres.ReqresApiTests

@@ -32,7 +32,9 @@ jobs:
       - name: Cache Gradle dependencies
         uses: actions/cache@v3
         with:
-          path: ~/.gradle/caches
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
@@ -48,5 +50,5 @@ jobs:
           elif [ "${{ github.event.inputs.deployment_target }}" == "Study_API_Tests" ]; then
             ./gradlew test --tests api.forstudy.ForStudyApiTests
           elif [ "${{ github.event.inputs.deployment_target }}" == "Reqres_API_Test" ]; then
-            ./gradlew test --tests api.reqres.ForStudyApiTests 
+            ./gradlew test --tests api.reqres.ReqresApiTests
           fi

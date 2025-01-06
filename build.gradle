@@ -14,17 +14,25 @@ ext {
     testngVersion = '7.10.2'
     restAssuredVersion = '5.5.0'
     allureTestngVersion = '2.19.0'
+    jsonSchemaValidatorVersion = '5.5.0'
+    javafakerVersion = '1.0.2'
+    selenideVersion = '7.4.1'
+    webdrivermanagerVersion = '5.9.2'
 }
 
 dependencies {
     testImplementation "org.testng:testng:$testngVersion"
     testImplementation "io.rest-assured:rest-assured:$restAssuredVersion"
     testImplementation "io.qameta.allure:allure-testng:$allureTestngVersion"
+
+    implementation "io.rest-assured:json-schema-validator:$jsonSchemaValidatorVersion"
+    implementation "com.github.javafaker:javafaker:$javafakerVersion"
+    implementation "com.codeborne:selenide:$selenideVersion"
+    implementation "io.github.bonigarcia:webdrivermanager:$webdrivermanagerVersion"
 }
 
-tasks.test {
+test {
     useTestNG()
-    systemProperty 'allure.results.directory', 'build/allure-results'
 }
 
 allure {

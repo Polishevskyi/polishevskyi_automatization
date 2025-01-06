@@ -31,13 +31,24 @@ dependencies {
     implementation "io.github.bonigarcia:webdrivermanager:$webdrivermanagerVersion"
 }
 
-test {
+tasks.test {
     useTestNG()
+    systemProperty 'allure.results.directory', 'build/allure-results'
 }
 
 allure {
     autoconfigure = true
-    version = allureTestngVersion
+    version = '2.23.1'
+    aspectjweaver = true
+}
+
+// Tasks to run and manage Allure reports
+tasks.register('allureClean') {
+    group = 'allure'
+    description = 'Clean Allure results directory'
+    doLast {
+        delete 'build/allure-results'
+    }
 }
 
 /*
